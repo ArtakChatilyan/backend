@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const errorMiddleware=require('./middlewares/error-middleware');
 
-// const dataAccess = require("./database");
+const dataAccess = require("./database");
 
 app.use(
   cors({
@@ -17,6 +17,11 @@ app.use(
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
+
+const subCategoryRouter = require("./routes/subcategories.router");
+
+app.use("/categories", express.static("categories"));
+app.use("/api/v1/subcategories", subCategoryRouter);
 
 app.use(errorMiddleware);
 
