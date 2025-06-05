@@ -20,6 +20,10 @@ app.use(cookieParser());
 
 app.use(errorMiddleware);
 
+app.get('/', (req, res) => {
+  res.send('server working');
+});
+
 const start = () => {
   try {
     app.listen(8080, () => {
